@@ -17,7 +17,9 @@ import {
   Bell, 
   Workflow, 
   Search,
-  Sliders
+  Sliders,
+  Gauge,
+  Cpu
 } from 'lucide-react';
 
 export default function IrcFciExplainerPage() {
@@ -47,19 +49,24 @@ export default function IrcFciExplainerPage() {
   }));
   const fciResults = executeFCI('Máquinas & Equipamentos', 'Curitiba, PR', suppliersList);
 
+  // SVG Gauge calculations
+  const radius = 55;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (simulatedIRC.score / 100) * circumference;
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
       
       {/* Title */}
       <div className="max-w-3xl space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
-          <Workflow className="w-3.5 h-3.5 text-emerald-600" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200 shadow-xs">
+          <Workflow className="w-4 h-4 text-emerald-600" />
           Inteligência Comercial Proprietária do Grupo Unique
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
           Painel Analítico de IRC & FCI
         </h1>
-        <p className="text-sm text-slate-600 leading-relaxed">
+        <p className="text-sm text-slate-600 leading-relaxed font-normal">
           Compreenda como os dois pilares tecnológicos do <strong>Vendara B2B</strong> eliminam o desperdício de tempo comercial, priorizam negócios com dinheiro em caixa e ativam fornecedores de forma reversa e automatizada.
         </p>
       </div>
@@ -68,14 +75,14 @@ export default function IrcFciExplainerPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* Pillar 1: IRC */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6 hover-glow-emerald transition">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold shadow-xs">
               <TrendingUp className="w-6 h-6" />
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600">Pilar 1</span>
-              <h2 className="text-xl font-bold text-slate-900 leading-tight">IRC — Índice de Interesse Real de Compra</h2>
+              <h2 className="text-xl font-extrabold text-slate-900 leading-tight">IRC — Índice de Interesse Real de Compra</h2>
             </div>
           </div>
 
@@ -88,19 +95,19 @@ export default function IrcFciExplainerPage() {
               Composição Ponderada do Algoritmo
             </h4>
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
                 <div className="font-bold text-slate-800">Urgência / Prazo (30%)</div>
                 <div className="text-[11px] text-slate-500">Prazos curtos (&lt; 15 dias) aumentam a pontuação.</div>
               </div>
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
                 <div className="font-bold text-slate-800">Decisor Alinhado (30%)</div>
                 <div className="text-[11px] text-slate-500">Confirmação de aprovação pela diretoria/C-Level.</div>
               </div>
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
                 <div className="font-bold text-slate-800">Orçamento Previsto (25%)</div>
                 <div className="text-[11px] text-slate-500">Volume financeiro compatível com o mercado.</div>
               </div>
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
                 <div className="font-bold text-slate-800">Potencial LTV (15%)</div>
                 <div className="text-[11px] text-slate-500">Contratos contínuos com compras recorrentes.</div>
               </div>
@@ -109,14 +116,14 @@ export default function IrcFciExplainerPage() {
         </div>
 
         {/* Pillar 2: FCI */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6 hover-glow-emerald transition">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center font-bold">
+            <div className="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center font-bold shadow-xs">
               <Zap className="w-6 h-6" />
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-teal-600">Pilar 2</span>
-              <h2 className="text-xl font-bold text-slate-900 leading-tight">FCI — Fluxo Comercial Inverso</h2>
+              <h2 className="text-xl font-extrabold text-slate-900 leading-tight">FCI — Fluxo Comercial Inverso</h2>
             </div>
           </div>
 
@@ -131,14 +138,14 @@ export default function IrcFciExplainerPage() {
             </h4>
 
             <div className="space-y-2 text-xs">
-              <div className="p-2.5 rounded-xl bg-red-50/60 border border-red-200/60 text-red-900 space-y-1">
+              <div className="p-3 rounded-xl bg-red-50/70 border border-red-200 text-red-900 space-y-1">
                 <span className="font-bold block text-[11px] uppercase">Fluxo Tradicional (Passivo)</span>
                 <p className="text-[11px] text-red-800">
                   Fornecedor anuncia produto &rarr; Espera cliente buscar no Google &rarr; Recebe lead frio &rarr; Negociação longa e sem garantia.
                 </p>
               </div>
 
-              <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 space-y-1">
+              <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 space-y-1">
                 <span className="font-bold block text-[11px] uppercase text-emerald-700">FCI Vendara (Ativo & Inteligente)</span>
                 <p className="text-[11px] text-emerald-900">
                   Comprador publica necessidade qualificada (IRC &gt; 80) &rarr; FCI varre base &rarr; Fornecedores recebem oportunidade pronta com cotação direta em poucas horas.
@@ -151,8 +158,10 @@ export default function IrcFciExplainerPage() {
       </div>
 
       {/* Interactive Simulator Section */}
-      <section className="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+      <section className="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl space-y-8 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-slate-800 pb-6 relative z-10">
           <div>
             <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5 mb-1">
               <Sliders className="w-4 h-4" />
@@ -160,18 +169,55 @@ export default function IrcFciExplainerPage() {
             </div>
             <h3 className="text-2xl font-bold text-white">Simulador Dinâmico de IRC & FCI</h3>
             <p className="text-xs text-slate-400 mt-1">
-              Altere os sliders para visualizar como o algoritmo recalcula o índice e prioriza o matching.
+              Altere os parâmetros abaixo para ver o cálculo do score e o disparo proativo de conexões em tempo real.
             </p>
           </div>
 
-          <div className="text-right">
-            <span className="text-[10px] text-slate-400 uppercase font-semibold block">Score Resultante</span>
-            <span className="text-4xl font-extrabold text-emerald-400">{simulatedIRC.score} pts</span>
-            <span className="block text-[11px] font-bold text-emerald-300">{simulatedIRC.level}</span>
+          {/* SVG Animated Circular Gauge */}
+          <div className="flex items-center gap-4 bg-slate-800/80 px-5 py-3 rounded-2xl border border-slate-700/80">
+            <div className="relative w-28 h-28 flex items-center justify-center">
+              <svg className="w-full h-full transform -rotate-90">
+                <circle
+                  cx="56"
+                  cy="56"
+                  r={radius}
+                  className="text-slate-700"
+                  strokeWidth="8"
+                  stroke="currentColor"
+                  fill="transparent"
+                />
+                <circle
+                  cx="56"
+                  cy="56"
+                  r={radius}
+                  className="text-emerald-400 transition-all duration-700 ease-out"
+                  strokeWidth="8"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
+                  strokeLinecap="round"
+                  stroke="currentColor"
+                  fill="transparent"
+                />
+              </svg>
+              <div className="absolute flex flex-col items-center">
+                <span className="text-2xl font-black text-white">{simulatedIRC.score}</span>
+                <span className="text-[9px] uppercase tracking-wider text-emerald-400 font-bold">IRC Score</span>
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[10px] text-slate-400 uppercase font-semibold block">Classificação:</span>
+              <span className="text-xs font-black px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 block">
+                {simulatedIRC.level}
+              </span>
+              <span className="text-[10px] text-slate-400 block pt-1">
+                FCI ativado automaticamente
+              </span>
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
           
           {/* Controls */}
           <div className="space-y-5 lg:col-span-2">
@@ -210,22 +256,22 @@ export default function IrcFciExplainerPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <label className="flex items-center gap-3 p-3 rounded-xl bg-slate-800/80 border border-slate-700 cursor-pointer">
+              <label className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700 cursor-pointer hover:border-emerald-500/50 transition">
                 <input
                   type="checkbox"
                   checked={hasDecisor}
                   onChange={(e) => setHasDecisor(e.target.checked)}
-                  className="rounded text-emerald-500 focus:ring-emerald-400"
+                  className="rounded text-emerald-500 focus:ring-emerald-400 w-4 h-4"
                 />
                 <span className="text-xs text-slate-200">Decisor / C-Level Aprovou Verba (+30 pts)</span>
               </label>
 
-              <label className="flex items-center gap-3 p-3 rounded-xl bg-slate-800/80 border border-slate-700 cursor-pointer">
+              <label className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700 cursor-pointer hover:border-emerald-500/50 transition">
                 <input
                   type="checkbox"
                   checked={isRecurring}
                   onChange={(e) => setIsRecurring(e.target.checked)}
-                  className="rounded text-emerald-500 focus:ring-emerald-400"
+                  className="rounded text-emerald-500 focus:ring-emerald-400 w-4 h-4"
                 />
                 <span className="text-xs text-slate-200">Compra Recorrente / Contrato (+15 pts)</span>
               </label>
@@ -233,27 +279,30 @@ export default function IrcFciExplainerPage() {
           </div>
 
           {/* FCI Output preview */}
-          <div className="bg-slate-800/60 p-5 rounded-2xl border border-slate-700 space-y-4">
+          <div className="bg-slate-800/60 p-5 rounded-3xl border border-slate-700 space-y-4">
             <div className="flex items-center justify-between text-xs font-bold text-slate-300 uppercase tracking-wider">
               <span>Disparos FCI Simulados</span>
-              <span className="text-emerald-400">Ativo</span>
+              <span className="text-emerald-400 flex items-center gap-1 font-bold">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                Ativo
+              </span>
             </div>
 
             <div className="space-y-2.5">
               {fciResults.slice(0, 2).map(match => (
-                <div key={match.supplierId} className="p-3 bg-slate-900 rounded-xl border border-slate-700/80 text-xs space-y-1">
+                <div key={match.supplierId} className="p-3.5 bg-slate-900 rounded-2xl border border-slate-700/80 text-xs space-y-1.5 shadow-sm">
                   <div className="flex justify-between font-bold text-white">
                     <span>{match.supplierName}</span>
                     <span className="text-emerald-400 font-extrabold">{match.relevanceScore}%</span>
                   </div>
                   <div className="text-[10px] text-slate-400">{match.matchReason}</div>
-                  <div className="text-[10px] text-emerald-300 font-medium">⚡ {match.readinessSpeed}</div>
+                  <div className="text-[10px] text-emerald-300 font-semibold">⚡ {match.readinessSpeed}</div>
                 </div>
               ))}
             </div>
 
             <div className="pt-2 text-[11px] text-slate-400">
-              Score de <strong>{simulatedIRC.score}</strong> dispara alertas automáticos prioritários no canal corporativo dos fornecedores.
+              Score de <strong>{simulatedIRC.score}</strong> qualifica a demanda e aciona fornecedores aptos em instantes.
             </div>
           </div>
 
@@ -302,12 +351,12 @@ export default function IrcFciExplainerPage() {
                     {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(d.estimatedBudget)}
                   </td>
                   <td className="p-4 text-center">
-                    <span className="inline-block px-2.5 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800">
+                    <span className="inline-block px-3 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800">
                       {d.ircScore} pts ({d.ircLevel})
                     </span>
                   </td>
                   <td className="p-4">
-                    <span className="text-[11px] font-medium text-emerald-700 flex items-center gap-1">
+                    <span className="text-[11px] font-semibold text-emerald-700 flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                       {d.fciStatus} ({d.matchedSuppliersCount} parceiros)
                     </span>
