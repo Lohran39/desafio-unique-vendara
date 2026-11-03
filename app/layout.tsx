@@ -8,6 +8,11 @@ import Footer from '@/components/shared/Footer';
 export const metadata: Metadata = {
   title: 'Grupo Unique — Unique Talentos & Vendara B2B',
   description: 'Plataforma integrada de Portal de Empregos (Unique Talentos) e Marketplace B2B (Vendara)',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({

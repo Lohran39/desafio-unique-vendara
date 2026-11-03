@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="uniqueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="50%" stop-color="#3730a3" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  
+  <!-- Rounded Base Background -->
+  <rect width="64" height="64" rx="18" fill="url(#uniqueGradient)" />
+  
+  <!-- Subtle inner border -->
+  <rect x="1" y="1" width="62" height="62" rx="17" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" />
+  
+  <!-- Stylized Bold 'U' -->
+  <path d="M22 17 V33 C22 40 26 45 32 45 C38 45 42 40 42 33 V17 H35.5 V33 C35.5 36.5 34 39 32 39 C30 39 28.5 36.5 28.5 33 V17 Z" fill="#ffffff" filter="url(#shadow)" />
+  
+  <!-- Spark Indicator Dot (Talentos + Vendara Connection) -->
+  <circle cx="46" cy="18" r="4.5" fill="#34d399" stroke="#ffffff" stroke-width="1.5" />
+</svg>
