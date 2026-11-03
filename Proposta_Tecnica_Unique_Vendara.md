@@ -142,11 +142,15 @@ Oferecemos flexibilidade de contratação para melhor se adequar ao fluxo orçam
 Para validação prática dos critérios exigidos no item 6 do briefing técnico:
 
 ### 6.1 Links de Demonstração e Acesso para Testes
-- **Plataforma / Portal de Demonstração**: `[INSERIR LINK DO PORTAL / SISTEMA DE TESTE]`
-- **Vídeo Demonstrativo dos Fluxos**: `[INSERIR LINK DO LOOM / YOUTUBE NÃO LISTADO]` *(caso o sistema exija apresentação guiada ou seja privado)*
-- **Credenciais de Teste**:
-  - *Perfil Administrador/Empresa*: `demo-empresa@exemplo.com` | Senha: `[SENHA_DEMO]`
-  - *Perfil Candidato/Usuário*: `demo-user@exemplo.com` | Senha: `[SENHA_DEMO]`
+- **Plataforma / Portal de Demonstração (Vercel)**: [https://desafio-psi-ashy.vercel.app](https://desafio-psi-ashy.vercel.app)
+- **Repositório do Código Fonte (GitHub)**: [https://github.com/Lohran39/desafio-unique-vendara](https://github.com/Lohran39/desafio-unique-vendara)
+- **Acesso Rápido para Testes (DemoBar Fixa)**:
+  - *Perfil Recrutadora (Unique Talentos)*: Ana Beatriz | InovaTech Solutions
+  - *Perfil Candidato Dev Sênior (Unique Talentos)*: Lucas Moreira | Full Stack Sênior
+  - *Perfil Comprador B2B (Vendara)*: Roberto Camargo | Metalúrgica Alfa
+  - *Perfil Fornecedora B2B (Vendara)*: Juliana Prado | Nexus Máquinas Industrial
+  - *Perfil Administrador Master*: Diretoria Grupo Unique
+  *(Não requer login ou cadastro prévio: basta clicar no papel desejado na barra de demonstração superior)*
 
 ### 6.2 O Que Pode Ser Testado no Ambiente
 1. **Cadastro e Onboarding**: Fluxo completo de criação de conta com validação de dados.
